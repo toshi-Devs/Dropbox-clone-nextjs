@@ -12,7 +12,7 @@ export default function Home() {
           Welcome to Dropbox. <br /> 
           <br />
           Storing everything for you and your business needs. All in one place. <br />
-          "This is a clone of the popular cloud storage service Dropbox."
+          {/* "This is a clone of the popular cloud storage service Dropbox." */}
         </h1>
 
         <p className="pb-20">
