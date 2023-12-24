@@ -35,32 +35,33 @@ function Dropzone() {
     if (loading) return;
     if (!user) return;
     setLoading(true);
-
-    ///dsadasdsadsa
-
-    const docRef = await addDoc(collection(db, "users", user.id, "files"), {
-      userId: user.id,
-      filename: selectedFile.name,
-      fullname: user.fullName,
-      size: selectedFile.size,
-      type: selectedFile.type,
-      file: selectedFile,
-      createdAt: serverTimestamp(),
-    })
-
-    const imageRef = ref(storage, `users/${user.id}/files/${docRef.id}`);
-
-    uploadBytes(imageRef, selectedFile).then(async (snapshot) => {
+  
+    try {
+      const docRef = await addDoc(collection(db, "users", user.id, "files"), {
+        userId: user.id,
+        filename: selectedFile.name,
+        fullname: user.fullName,
+        size: selectedFile.size,
+        type: selectedFile.type,
+        createdAt: serverTimestamp(),
+      });
+  
+      const imageRef = ref(storage, `users/${user.id}/files/${docRef.id}`);
+  
+      await uploadBytes(imageRef, selectedFile);
+  
       const downloadURL = await getDownloadURL(imageRef);
-      
+  
       await updateDoc(doc(db, "users", user.id, "files", docRef.id), { 
         downloadUrl: downloadURL,
       });
-    });
-
-    setLoading(false);
-
-  }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
 
 
   return (
@@ -68,7 +69,7 @@ function Dropzone() {
     <DropzoneComponent 
       minSize={0}
       maxSize={maxsize}
-      onDrop={acceptedFiles => console.log(acceptedFiles)}
+      onDrop={onDrop}
       >
 
         {({
