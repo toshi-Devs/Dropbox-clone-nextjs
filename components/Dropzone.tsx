@@ -50,10 +50,10 @@ function Dropzone() {
   
       await uploadBytes(imageRef, selectedFile);
   
-      const downloadURL = await getDownloadURL(imageRef);
+      const downloadUrl = await getDownloadURL(imageRef);
   
       await updateDoc(doc(db, "users", user.id, "files", docRef.id), { 
-        downloadUrl: downloadURL,
+        downloadUrl: downloadUrl,
       });
     } catch (error) {
       console.error("Error uploading file:", error);

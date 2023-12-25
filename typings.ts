@@ -1,9 +1,9 @@
-export type FileTypes = {
+export type FileType = {
     id: string;
     filename: number;
     fullname: string;
     size: number;
     type: string;
     createdAt: Date;
-    downloadURL: string;
+    downloadUrl: string;
 };
