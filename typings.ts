@@ -1,6 +1,6 @@
 export type FileType = {
     id: string;
-    filename: number;
+    filename: string;
     fullname: string;
     size: number;
     type: string;
