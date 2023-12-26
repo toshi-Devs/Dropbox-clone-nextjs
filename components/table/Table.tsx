@@ -15,6 +15,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { FileType } from "@/typings"
+import { Button } from "../ui/button"
+import { TrashIcon } from "lucide-react"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -64,6 +67,14 @@ export function DataTable<TData, TValue>({
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
+
+                <TableCell key={(row.original as FileType).id}>
+                    <Button
+                      variant={"outline"} >
+                        <TrashIcon size={20} />
+                      </Button>
+                </TableCell>
+
               </TableRow>
             ))
           ) : (
