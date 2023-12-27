@@ -1,4 +1,4 @@
-import { ArrowRight} from "lucide-react";
+import { ArrowRight, Github} from "lucide-react";
 import Link from "next/link";
 
 
@@ -38,7 +38,17 @@ export default function Home() {
     
           </video>
       </div>
+      
       </div>
+      <p className="text-center text-lg font-semibold p-2">
+         This DropBox clone was built using Next.js, TailwindCSS, Firebase, and Clerk.<br />
+          <a href="https://github.com/toshi-Devs" target="_blank" 
+          className="inline-flex items-center underline text-blue-400 hover:text-blue-700">
+          <Github size={25} className="ml-2" />Toshi-Devs
+          </a>
+      </p>
+
+
     </main>
   )
 }
